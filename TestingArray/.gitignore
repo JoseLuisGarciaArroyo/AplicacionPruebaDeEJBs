@@ -1,0 +1,7 @@
+##################################
+# Ficheros y directorios exlcuidos
+##################################
+/target/
+/.settings/
+/.classpath
+/.project
