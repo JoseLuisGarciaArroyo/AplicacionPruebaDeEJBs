@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Properties;
 
+import javax.ejb.EJB;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -25,6 +26,9 @@ import org.jboss.tutorial.stateless.bean.CalculatorRemote;
 @WebServlet("/SrvPrueba")
 public class SrvPrueba extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	@EJB  
+	CalculatorRemote calculator;
 
 	/**
 	 * Default constructor.
@@ -55,8 +59,8 @@ public class SrvPrueba extends HttpServlet {
 			Properties props = new Properties();
 			props.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
 			Context context = new InitialContext(props);
-			Calculator calculator = (CalculatorRemote) context.lookup(
-					"java:app/AplicacionPruebaEJB/CalculatorBean!org.jboss.tutorial.stateless.bean.CalculatorRemote");
+			// CalculatorRemote calculator = (CalculatorRemote) context.lookup(
+			// "java:app/AplicacionPruebaEJB/CalculatorBean!org.jboss.tutorial.stateless.bean.CalculatorRemote");
 			suma = calculator.add(a, b);
 			resta = calculator.subtract(a, b);
 			out.println("<h1>SUMA: " + suma + "</h1>");
